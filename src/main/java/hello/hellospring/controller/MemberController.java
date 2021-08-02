@@ -52,7 +52,7 @@ public class MemberController {
     //특정 회원 id로 조회
     @GetMapping("/members/findById")
     @ResponseBody
-    public Optional<Member> findById(@RequestParam("user_id") String user_id, Model model) {
+    public Optional<Member> findById(@RequestParam("user_id") String user_id) {
         Optional<Member> member = memberService.findById(user_id);
         return member;
     }
@@ -60,7 +60,7 @@ public class MemberController {
     //특정 회원 name 으로 조회
     @GetMapping("/members/findByName")
     @ResponseBody
-    public Optional<Member> findByName(@RequestParam("user_name") String user_name, Model model) {
+    public Optional<Member> findByName(@RequestParam("user_name") String user_name) {
         Optional<Member> member = memberService.findByName(user_name);
         return member;
     }
