@@ -40,18 +40,22 @@ public class MemberController {
 
     //READ
     //로그인
-    @GetMapping("/members/login")
+    @PostMapping("/members/login")
     @ResponseBody
     public Optional<Member> login(@RequestBody Map<String, String> map) {
         Optional<Member> foundMember = memberService.findById(map.get("user_id"));
         if (foundMember.isPresent()) {
-            if (foundMember.get().getUser_pass() == map.get("user_pass")) {
+            if (foundMember.get().getUser_pass().equals(map.get("user_pass"))) {
                 return foundMember;
             } else {
-                throw new IllegalStateException("wrong_password");
+                Optional<Member> result = Optional.of(new Member());
+                result.get().setUser_id("wrong_pass");
+                return result;
             }
         } else{
-            throw new IllegalStateException("no_member");
+            Optional<Member> result = Optional.of(new Member());
+            result.get().setUser_id("no_member");
+            return result;
         }
     }
 
