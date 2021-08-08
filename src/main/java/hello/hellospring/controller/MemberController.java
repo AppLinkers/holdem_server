@@ -39,11 +39,26 @@ public class MemberController {
 
 
     //READ
+    //로그인
+    @GetMapping("/members/login")
+    @ResponseBody
+    public Optional<Member> login(@RequestBody Map<String, String> map) {
+        Optional<Member> foundMember = memberService.findById(map.get("user_id"));
+        if (foundMember.isPresent()) {
+            if (foundMember.get().getUser_pass() == map.get("user_pass")) {
+                return foundMember;
+            } else {
+                throw new IllegalStateException("wrong_password");
+            }
+        } else{
+            throw new IllegalStateException("no_member");
+        }
+    }
+
     //전체 회원 조회
     @GetMapping("/members")
     @ResponseBody
     public List<Member> list(Model model) {
-
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return members;
