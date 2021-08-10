@@ -2,6 +2,7 @@ package hello.hellospring.controller;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -63,6 +65,8 @@ public class MemberController {
     @GetMapping("/members")
     @ResponseBody
     public List<Member> list(Model model) {
+        System.out.println("test_members");
+        log.info("test+members");
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return members;
