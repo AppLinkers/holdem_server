@@ -55,10 +55,10 @@ public class S3Uploader {
     // 로컬에 저장된 파일 삭제
     private void removeNewFile(File targetFile) {
         if (targetFile.delete()) {
-            log.info("File delete success");
+            //log.info("File delete success");
             return;
         }
-        log.info("File delete fail");
+        //log.info("File delete fail");
     }
 
     //로컬에 파일 업로드 하기
