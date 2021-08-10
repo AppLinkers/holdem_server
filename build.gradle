@@ -20,10 +20,10 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-aws-context
+	implementation 'org.projectlombok:lombok'
+
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'
 
-	implementation 'org.projectlombok:lombok'
 
 }
 
