@@ -20,7 +20,8 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	implementation 'org.projectlombok:lombok'
+	compile('org.projectlombok:lombok:1.18.10')
+	annotationProcessor('org.projectlombok:lombok:1.18.10')
 
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-context', version: '2.2.6.RELEASE'
 
