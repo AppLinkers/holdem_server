@@ -22,6 +22,7 @@ public class S3Controller {
     }
 
     @GetMapping("/image")
+    @ResponseBody
     public String imgTest() {
         return "imgTest";
     }
