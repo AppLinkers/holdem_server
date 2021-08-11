@@ -14,12 +14,12 @@ import java.io.IOException;
 @Controller
 public class S3Controller {
 
-    private final S3Uploader s3Uploader;
-
-    @Autowired
-    public S3Controller(S3Uploader s3Uploader) {
-        this.s3Uploader = s3Uploader;
-    }
+//    private final S3Uploader s3Uploader;
+//
+//    @Autowired
+//    public S3Controller(S3Uploader s3Uploader) {
+//        this.s3Uploader = s3Uploader;
+//    }
 
     @GetMapping("/image")
     @ResponseBody
@@ -27,10 +27,10 @@ public class S3Controller {
         return "imgTest";
     }
 
-    @PostMapping("/images")
-    @ResponseBody
-    public String upload(@RequestParam("images")MultipartFile multipartFile) throws IOException {
-        s3Uploader.upload(multipartFile, "static");
-        return "test";
-    }
+//    @PostMapping("/images")
+//    @ResponseBody
+//    public String upload(@RequestParam("images")MultipartFile multipartFile) throws IOException {
+//        s3Uploader.upload(multipartFile, "static");
+//        return "test";
+//    }
 }
