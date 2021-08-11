@@ -22,6 +22,12 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @GetMapping("/imagetest")
+    @ResponseBody
+    public String imgTest() {
+        return "imgTest";
+    }
+
     //CREATE
     //회원 가입
     @PostMapping("/members/new")
