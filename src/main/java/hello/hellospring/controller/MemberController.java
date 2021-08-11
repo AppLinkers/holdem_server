@@ -22,7 +22,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/imagetest")
+    @GetMapping("/img")
     @ResponseBody
     public String imgTest() {
         return "imgTest";
@@ -68,9 +68,8 @@ public class MemberController {
     //전체 회원 조회
     @GetMapping("/members")
     @ResponseBody
-    public List<Member> list(Model model) {
+    public List<Member> list() {
         List<Member> members = memberService.findMembers();
-        model.addAttribute("members", members);
         return members;
     }
 
