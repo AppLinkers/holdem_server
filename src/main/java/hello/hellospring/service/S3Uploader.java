@@ -3,10 +3,8 @@ package hello.hellospring.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -16,13 +14,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
-@RequiredArgsConstructor
 public class S3Uploader {
 
     private final AmazonS3Client amazonS3Client;
 
     @Value("${cloud.aws.s3.bucket}")
     public String bucket; // S3 버킷 이름
+
+    public S3Uploader(AmazonS3Client amazonS3Client) {
+        this.amazonS3Client = amazonS3Client;
+    }
 
     public String upload(MultipartFile multipartFile, String dirName) throws IOException {
         File uploadFile = convert(multipartFile) // 파일 변환할 수 없으면 에러
