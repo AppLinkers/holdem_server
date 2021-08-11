@@ -5,7 +5,6 @@ import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +31,8 @@ public class MemberController {
         member.setUser_id(map.get("user_id"));
         member.setUser_name(map.get("user_name"));
         member.setUser_pass(map.get("user_pass"));
+        member.setUser_phone(map.get("user_phone"));
+        member.setUser_loc(map.get("user_loc"));
 
         memberService.join(member);
 
@@ -93,6 +94,8 @@ public class MemberController {
         member.setUser_id(map.get("user_id"));
         member.setUser_name(map.get("user_name"));
         member.setUser_pass(map.get("user_pass"));
+        member.setUser_phone(map.get("user_phone"));
+        member.setUser_loc(map.get("user_loc"));
 
         memberService.updateMember(user_id, member);
         Optional<Member> result_member = memberService.findById(map.get("user_id"));
