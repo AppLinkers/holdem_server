@@ -21,12 +21,6 @@ public class S3Controller {
         this.s3Uploader = s3Uploader;
     }
 
-    @GetMapping("/image")
-    @ResponseBody
-    public String imgTest() {
-        return "imgTest";
-    }
-
     @PostMapping("/images")
     @ResponseBody
     public String upload(@RequestParam("images")MultipartFile multipartFile) throws IOException {
