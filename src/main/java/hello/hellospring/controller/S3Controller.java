@@ -20,10 +20,15 @@ public class S3Controller {
         this.s3Uploader = s3Uploader;
     }
 
+    /**
+     * 사진 업로드
+     * @param multipartFile
+     * @return 사진 S3 링크 반환
+     */
     @PostMapping("/images")
     @ResponseBody
     public String upload(@RequestParam("images")MultipartFile multipartFile) throws IOException {
-        s3Uploader.upload(multipartFile, "static");
-        return "test";
+        return s3Uploader.upload(multipartFile, "static");
     }
+
 }

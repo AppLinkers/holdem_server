@@ -14,7 +14,12 @@ public class CompetitionService {
 
     // Save
     public Long save(Competition competition) {
-        competitionRepository.save(competition);
-        return competition.getId();
+        Competition result = competitionRepository.save(competition);
+        return result.getId();
+    }
+
+    // findById
+    public Competition findById(Long id) {
+        return competitionRepository.findById(id).get();
     }
 }
