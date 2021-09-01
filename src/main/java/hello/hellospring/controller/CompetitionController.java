@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,5 +28,11 @@ public class CompetitionController {
         competition.setCmp_img(ImgUrl);
         Long resultId = competitionService.save(competition);
         return competitionService.findById(resultId);
+    }
+
+    @GetMapping("/competition/list")
+    @ResponseBody
+    public List<Competition> findAll() {
+        return competitionService.findCompetitions();
     }
 }

@@ -6,6 +6,8 @@ import hello.hellospring.repository.CompetitionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Transactional
 public class CompetitionService {
@@ -22,4 +24,11 @@ public class CompetitionService {
     public Competition findById(Long id) {
         return competitionRepository.findById(id).get();
     }
+
+    // findAll
+    public List<Competition> findCompetitions() {
+        return competitionRepository.findAll();
+    }
+
+
 }
