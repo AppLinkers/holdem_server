@@ -1,7 +1,6 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Competition;
-import hello.hellospring.domain.HoldemPum;
 import hello.hellospring.repository.CompetitionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
