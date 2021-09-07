@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/competition")
 @RequiredArgsConstructor
 public class CompetitionController {
 
@@ -19,8 +20,7 @@ public class CompetitionController {
     private final S3Uploader s3Uploader;
 
 
-    @PostMapping("/competition/save")
-    @ResponseBody
+    @PostMapping("/save")
     public Competition save(@ModelAttribute RegisterCompetitionRequest registerCompetitionRequest) throws IOException {
         String ImgUrl = s3Uploader.upload(registerCompetitionRequest.getMultipartFile(), "competition");
         System.out.println(ImgUrl);
@@ -30,8 +30,7 @@ public class CompetitionController {
         return competitionService.findById(resultId);
     }
 
-    @GetMapping("/competition/list")
-    @ResponseBody
+    @GetMapping("/list")
     public List<Competition> findAll() {
         return competitionService.findCompetitions();
     }

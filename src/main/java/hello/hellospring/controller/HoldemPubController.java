@@ -11,13 +11,14 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/holdem_pub")
 @RequiredArgsConstructor
 public class HoldemPubController {
 
     private final HoldemPubService holdemPubService;
     private final S3Uploader s3Uploader;
 
-    @PostMapping("/holdem_pub/save")
+    @PostMapping("/save")
     public HoldemPub save(@ModelAttribute RegisterHoldemPubRequest registerHoldemPubRequest) throws IOException {
         String ImgUrl = s3Uploader.upload(registerHoldemPubRequest.getMultipartFile(), "holdemPub");
         HoldemPub holdemPub = registerHoldemPubRequest.getHoldemPub();
@@ -25,7 +26,7 @@ public class HoldemPubController {
         return holdemPubService.save(holdemPub);
     }
 
-    @GetMapping("/holdem_pub/list")
+    @GetMapping("/list")
     public List<HoldemPub> list() {
         return holdemPubService.findAll();
     }

@@ -14,13 +14,14 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ticket")
 @RequiredArgsConstructor
 public class TicketController {
 
     private final S3Uploader s3Uploader;
     private final TicketService ticketService;
 
-    @PostMapping("/ticket/save")
+    @PostMapping("/save")
     public Ticket save(@ModelAttribute RegisterTicketRequest registerTicketRequest) throws IOException {
         String ImgUrl = s3Uploader.upload(registerTicketRequest.getMultipartFile(), "ticket");
         Ticket ticket = registerTicketRequest.getTicket();
@@ -28,7 +29,7 @@ public class TicketController {
         return ticketService.save(ticket);
     }
 
-    @GetMapping("/ticket/list")
+    @GetMapping("/list")
     public List<Ticket> list() {
         return ticketService.findAll();
     }

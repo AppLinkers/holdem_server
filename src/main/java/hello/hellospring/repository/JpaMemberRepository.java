@@ -59,6 +59,7 @@ public class JpaMemberRepository implements MemberRepository{
         String get_user_phone = member.getUser_phone();
         String get_user_loc = member.getUser_loc();
 
+
         em.createQuery("update Member m set m.user_id = :get_user_id,m.user_name = :get_user_name, m.user_pass = :get_user_pass,m.user_phone = :get_user_phone, m.user_loc = :get_user_loc where m.user_id = :user_id")
                 .setParameter("user_id", user_id)
                 .setParameter("get_user_id", get_user_id)

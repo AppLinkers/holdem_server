@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
@@ -24,7 +25,7 @@ public class MemberController {
 
     //CREATE
     //회원 가입
-    @PostMapping("/members/new")
+    @PostMapping("/new")
     @ResponseBody //객체를 HTTP 응답 본문의 객체로 변환하여 클라이언트로 전송.
     public Member create(@RequestBody Map<String, String> map) { //@RequestBody HTTP 요청 본문에 담긴 값들을 자바 객체로 변환하여 객체에 저장
         Member member = new Member();
@@ -42,7 +43,7 @@ public class MemberController {
 
     //READ
     //로그인
-    @PostMapping("/members/login")
+    @PostMapping("/login")
     @ResponseBody
     public Optional<Member> login(@RequestBody Map<String, String> map) {
         Optional<Member> foundMember = memberService.findById(map.get("user_id"));
@@ -62,7 +63,7 @@ public class MemberController {
     }
 
     //전체 회원 조회
-    @GetMapping("/members")
+    @GetMapping("")
     @ResponseBody
     public List<Member> list() {
         List<Member> members = memberService.findMembers();
@@ -70,7 +71,7 @@ public class MemberController {
     }
 
     //특정 회원 id로 조회
-    @GetMapping("/members/findById")
+    @GetMapping("/findById")
     @ResponseBody
     public Optional<Member> findById(@RequestParam("user_id") String user_id) {
         Optional<Member> member = memberService.findById(user_id);
@@ -78,7 +79,7 @@ public class MemberController {
     }
 
     //특정 회원 name 으로 조회
-    @GetMapping("/members/findByName")
+    @GetMapping("/findByName")
     @ResponseBody
     public Optional<Member> findByName(@RequestParam("user_name") String user_name) {
         Optional<Member> member = memberService.findByName(user_name);
@@ -87,7 +88,7 @@ public class MemberController {
 
     //UPDATE
     @Transactional // 해당 메소드를 하나의 트랙잭션으로 묶어주는 역할
-    @PostMapping("/members/update")
+    @PostMapping("/update")
     @ResponseBody
     public Optional<Member> updateMember(@RequestParam("user_id") String user_id, @RequestBody Map<String, String> map) {
         Member member = new Member();
@@ -105,7 +106,7 @@ public class MemberController {
 
     //DELETE
     @Transactional
-    @PostMapping("/members/delete")
+    @PostMapping("/delete")
     public String deleteMember(@RequestParam("user_id") String user_id) {
         memberService.deleteMember(user_id);
         return "redirect:/members";
