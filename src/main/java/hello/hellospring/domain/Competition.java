@@ -1,12 +1,13 @@
 package hello.hellospring.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -21,4 +22,9 @@ public class Competition {
     private int cmp_buyIn;
     private String cmp_start;
     private String cmp_end;
+
+
+    @OneToMany(mappedBy = "competition")
+    @JsonIgnore
+    private List<CompetitionHasMember> competitionHasMemberList = new ArrayList<>();
 }

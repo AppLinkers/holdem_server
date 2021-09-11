@@ -1,16 +1,22 @@
 package hello.hellospring.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter @Setter
-public class  Member {
+@Getter
+@Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB 가 알아서 생성
@@ -21,4 +27,21 @@ public class  Member {
     private String user_phone;
     private String user_loc;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<CompetitionHasMember> competitionHasMemberList = new ArrayList<>();
+
+    // 사용자를 대회에 추가
+    public void addCompetitionHasMember(CompetitionHasMember competitionHasMember) {
+        this.competitionHasMemberList.add(competitionHasMember);
+    }
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<RoomHasMember> roomHasMemberList = new ArrayList<>();
+
+    // 사용자를 채팅방에 추가
+    public void addRoomHasMember(RoomHasMember roomHasMember) {
+        this.roomHasMemberList.add(roomHasMember);
+    }
 }
