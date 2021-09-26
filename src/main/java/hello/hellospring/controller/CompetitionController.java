@@ -37,15 +37,5 @@ public class CompetitionController {
         return competitionService.findCompetitions();
     }
 
-    // 즐겨찾는 모임 추가
-    @PostMapping("/new_member")
-    public Competition newMember(@RequestParam Long competition_id, @RequestParam Long member_id) {
-        return  competitionService.newMember(competition_id, member_id);
-    }
 
-    // 사용자 아이디로 즐겨찾는 모임조회
-    @GetMapping("/list/{member_id}")
-    public List<Competition> findCompetitionsByUserId(@PathVariable String member_id) {
-        return competitionService.findCompetitionsByUserId(member_id);
-    }
 }

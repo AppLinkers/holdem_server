@@ -1,5 +1,6 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Competition;
 import hello.hellospring.domain.HoldemPub;
 import hello.hellospring.dto.RegisterHoldemPubRequest;
 import hello.hellospring.service.HoldemPubService;
@@ -29,5 +30,23 @@ public class HoldemPubController {
     @GetMapping("/list")
     public List<HoldemPub> list() {
         return holdemPubService.findAll();
+    }
+
+    // 즐겨찾는 모임 추가
+    @PostMapping("/new_member")
+    public HoldemPub newMember(@RequestParam Long holdemPub_id, @RequestParam String member_id) {
+        return  holdemPubService.newMember(holdemPub_id, member_id);
+    }
+
+    // 즐겨찾는 모임에서 삭제
+    @PostMapping("/delete_member")
+    public HoldemPub deleteMember(@RequestParam Long holdemPub_id, @RequestParam String member_id) {
+        return holdemPubService.deleteMember(holdemPub_id, member_id);
+    }
+
+    // 사용자 아이디로 즐겨찾는 모임조회
+    @GetMapping("/list/{member_id}")
+    public List<HoldemPub> findHoldemPubByUserId(@PathVariable String member_id) {
+        return holdemPubService.findHoldemPubByUserId(member_id);
     }
 }

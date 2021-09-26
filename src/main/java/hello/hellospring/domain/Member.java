@@ -1,5 +1,6 @@
 package hello.hellospring.domain;
 
+import com.amazonaws.services.ec2.model.SpotInstanceType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,12 +30,13 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<CompetitionHasMember> competitionHasMemberList = new ArrayList<>();
+    private List<HoldemPubHasMember> holdemPubHasMemberList = new ArrayList<>();
 
     // 사용자를 대회에 추가
-    public void addCompetitionHasMember(CompetitionHasMember competitionHasMember) {
-        this.competitionHasMemberList.add(competitionHasMember);
+    public void addHoldemPubHasMember(HoldemPubHasMember holdemPubHasMember) {
+        this.holdemPubHasMemberList.add(holdemPubHasMember);
     }
+
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -44,4 +46,6 @@ public class Member {
     public void addRoomHasMember(RoomHasMember roomHasMember) {
         this.roomHasMemberList.add(roomHasMember);
     }
+
+
 }

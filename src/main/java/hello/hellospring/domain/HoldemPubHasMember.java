@@ -6,11 +6,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "competition_has_member")
+@Table(name = "holdemPub_has_member")
 @Entity
+@IdClass(HoldemPubHasMemberId.class)
 @Getter
 @Setter
-public class CompetitionHasMember implements Serializable {
+public class HoldemPubHasMember implements Serializable {
 
     @Id
     @ManyToOne
@@ -19,6 +20,7 @@ public class CompetitionHasMember implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "competition_id")
-    private Competition competition;
+    @JoinColumn(name = "pub_id")
+    private HoldemPub holdemPub;
+
 }

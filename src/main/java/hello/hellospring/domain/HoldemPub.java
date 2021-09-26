@@ -1,11 +1,14 @@
 package hello.hellospring.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +28,8 @@ public class HoldemPub implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id", referencedColumnName = "id")
     private Game game;
+
+    @OneToMany(mappedBy = "holdemPub")
+    @JsonIgnore
+    private List<HoldemPubHasMember> holdemPubHasMemberList = new ArrayList<>();
 }

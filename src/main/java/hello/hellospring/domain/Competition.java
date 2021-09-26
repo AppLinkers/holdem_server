@@ -24,7 +24,5 @@ public class Competition {
     private String cmp_end;
 
 
-    @OneToMany(mappedBy = "competition")
-    @JsonIgnore
-    private List<CompetitionHasMember> competitionHasMemberList = new ArrayList<>();
+
 }
