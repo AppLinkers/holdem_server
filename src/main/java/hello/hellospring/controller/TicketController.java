@@ -1,13 +1,10 @@
 package hello.hellospring.controller;
 
-import hello.hellospring.domain.HoldemPub;
 import hello.hellospring.domain.Ticket;
-import hello.hellospring.dto.RegisterHoldemPubRequest;
 import hello.hellospring.dto.RegisterTicketRequest;
 import hello.hellospring.service.S3Uploader;
 import hello.hellospring.service.TicketService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -32,5 +29,10 @@ public class TicketController {
     @GetMapping("/list")
     public List<Ticket> list() {
         return ticketService.findAll();
+    }
+
+    @GetMapping("/remove/{ticket_id}")
+    public void remove(@PathVariable Long ticket_id) {
+        ticketService.remove(ticket_id);
     }
 }

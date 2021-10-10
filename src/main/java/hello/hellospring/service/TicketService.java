@@ -44,4 +44,9 @@ public class TicketService {
     public List<Ticket> findAll() {
         return ticketRepository.findAll();
     }
+
+    // 티켓 삭제
+    public void remove(Long ticketId) {
+        ticketRepository.deleteById(ticketId);
+    }
 }

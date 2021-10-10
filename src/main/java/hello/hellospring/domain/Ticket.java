@@ -28,7 +28,7 @@ public class Ticket {
     private Member member;
 
     @JsonIgnore
-    @OneToOne(targetEntity = Room.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Room.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "room_id")
     private Room room;
 }
