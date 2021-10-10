@@ -38,6 +38,6 @@ public class TicketController {
 
     @GetMapping("/list/{user_id}")
     public List<Ticket> list(@PathVariable Long user_id){
-        return ticketService.findAllByMemberId(user_id)
+        return ticketService.findAllByMemberId(user_id);
     }
 }
