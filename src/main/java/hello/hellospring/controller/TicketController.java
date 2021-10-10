@@ -21,15 +21,6 @@ public class TicketController {
     @PostMapping("/save")
     public Ticket save(@ModelAttribute RegisterTicketRequest registerTicketRequest) throws IOException {
         Ticket ticket = registerTicketRequest.getTicket();
-
-        String place = ticket.getTicket_place();
-        place.replaceAll("\"", "");
-        ticket.setTicket_place(place);
-
-        String name = ticket.getTicket_name();
-        name.replaceAll("\"", "");
-        ticket.setTicket_name(name);
-
         String ImgUrl = s3Uploader.upload(registerTicketRequest.getMultipartFile(), "ticket");
         ticket.setTicket_poster(ImgUrl);
         return ticketService.save(ticket);
