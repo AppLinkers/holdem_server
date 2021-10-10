@@ -20,10 +20,10 @@ public class TicketController {
 
     @PostMapping("/save")
     public Ticket save(@ModelAttribute RegisterTicketRequest registerTicketRequest) throws IOException {
-        String ImgUrl = s3Uploader.upload(registerTicketRequest.getMultipartFile(), "ticket");
-        System.out.println(ImgUrl);
         Ticket ticket = registerTicketRequest.getTicket();
         System.out.println(ticket.toString());
+        String ImgUrl = s3Uploader.upload(registerTicketRequest.getMultipartFile(), "ticket");
+        System.out.println(ImgUrl);
         ticket.setTicket_poster(ImgUrl);
         System.out.println("test_end");
         return ticketService.save(ticket);
