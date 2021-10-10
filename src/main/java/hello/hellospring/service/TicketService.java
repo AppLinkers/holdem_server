@@ -45,6 +45,12 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
+    // user_id 로 티켓 조회
+    public List<Ticket> findAllByMemberId(Long user_id) {
+        return ticketRepository.findAllByMemberId(user_id);
+    }
+
+
     // 티켓 삭제
     public void remove(Long ticketId) {
         ticketRepository.deleteById(ticketId);
