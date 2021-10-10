@@ -31,4 +31,14 @@ public class Ticket {
     @OneToOne(targetEntity = Room.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticket_name='" + ticket_name + '\'' +
+                ", ticket_place='" + ticket_place + '\'' +
+                ", ticket_price=" + ticket_price +
+                ", ticket_chatNum=" + ticket_chatNum +
+                '}';
+    }
 }
