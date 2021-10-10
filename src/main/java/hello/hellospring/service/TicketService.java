@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Room;
 import hello.hellospring.domain.RoomHasMember;
@@ -8,6 +9,7 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.RoomRepository;
 import hello.hellospring.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +20,15 @@ import java.util.List;
 @Transactional
 public class TicketService {
 
+    private final AmazonS3Client amazonS3Client;
+
     private final TicketRepository ticketRepository;
     private final RoomRepository roomRepository;
     private final MemberRepository memberRepository;
+
+
+    @Value("${cloud.aws.s3.bucket}")
+    public String bucket; // S3 버킷 이름
 
     // ticket 및 room DB 에 추가
     public Ticket save(Ticket ticket) {
@@ -53,6 +61,9 @@ public class TicketService {
 
     // 티켓 삭제
     public void remove(Long ticketId) {
+        Ticket ticket = ticketRepository.findById(ticketId).get();
+        String ticketImg = ticket.getTicket_poster();
+        amazonS3Client.deleteObject(bucket, ticketImg);
         ticketRepository.deleteById(ticketId);
     }
 }
