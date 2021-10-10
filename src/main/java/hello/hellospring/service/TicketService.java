@@ -46,8 +46,8 @@ public class TicketService {
     }
 
     // user_id 로 티켓 조회
-    public List<Ticket> findAllByMemberId(Long user_id) {
-        return ticketRepository.findAllByMemberId(user_id);
+    public List<Ticket> findAllByMemberId(String user_id) {
+        return ticketRepository.findAllByMember_User_id(user_id);
     }
 
 
